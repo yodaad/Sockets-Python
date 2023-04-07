@@ -5,6 +5,8 @@ import mysql.connector
 import sys
 import errno
 
+#Valores para conectarse a la BD
+
 db = mysql.connector.connect(
     host = "127.0.0.1",
     user = "root",
@@ -46,7 +48,8 @@ while True:
         mycursor.execute(sql, (data, ))
 
         results = mycursor.fetchall()
-
+     
+    #se valida si la sentencia SQL trae un null para indicarselo al cliente
         try: 
             if mycursor.rowcount == 0:
                 c.send(str("Persona dueña de ese número telefónico no existe").encode())            
