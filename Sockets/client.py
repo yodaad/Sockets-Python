@@ -16,11 +16,13 @@ i = 0
 
 while i < 3:
 
-    request = input("Ingrese el numero telefonico a consultar: ")
+    request = input(f"Ingrese el numero telefonico {i + 1} a consultar: ")
     s.send(request.encode())
 
     # Recibir data del servidor y decodificarla
     print(s.recv(1024).decode())
     
-    i =+ 1
+    i += 1
+
+s.close()
 
