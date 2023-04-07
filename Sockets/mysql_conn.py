@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 db = mysql.connector.connect(
     host = "127.0.0.1",
     user = "root",
@@ -7,15 +8,22 @@ db = mysql.connector.connect(
     database = "sistemas_distribuidos_db"
 )
 
-mycursor = db.cursor()
+def sql_funct():
 
-sql = "SELECT personas.dir_tel, personas.dir_nombre, personas.dir_direccion, ciudades.ciud_nombre FROM personas INNER JOIN ciudades ON personas.dir_ciud_id = ciudades.ciud_id WHERE personas.dir_tel = 3103000050"
+    mycursor = db.cursor()
 
-mycursor.execute(sql)
+    sql = "SELECT personas.dir_tel, personas.dir_nombre, personas.dir_direccion, ciudades.ciud_nombre FROM personas INNER JOIN ciudades ON personas.dir_ciud_id = ciudades.ciud_id WHERE personas.dir_tel = %s"
 
-results = mycursor.fetchall()
+    mycursor.execute(sql, (3103000040, ))
 
-for result in results:
-    print(result)
-    
+    results = mycursor.fetchall()
+
+    if mycursor.rowcount == 0:
+        print("Persona dueña de ese número telefónico no existe")
+        
+    for result in results:
+        print(result)     
+        
+sql_funct()
+
 
