@@ -2,6 +2,8 @@
 
 import socket
 import mysql.connector
+import sys
+import errno
 
 db = mysql.connector.connect(
     host = "127.0.0.1",
@@ -20,7 +22,7 @@ port = 5100
 
 # Uso de la primitiva bind
 s.bind(('', port))
-print("Socket conectado a %s" %(port))
+print("Socket conectado al puerto %s" %(port))
 
 # Uso de la primitiva listen
 s.listen(5)
@@ -30,7 +32,7 @@ print("Socket escuchando")
 while True:
     
     c, addr = s.accept()
-    print("Conexion desde la direccion: ", addr)
+    print("Se ha creado una conexion desde la direccion: ", addr)
         
     # Conexion con el cliente
     while True:
@@ -45,12 +47,14 @@ while True:
 
         results = mycursor.fetchall()
 
-        if mycursor.rowcount == 0:
-            c.send(str("Persona dueña de ese número telefónico no existe").encode())
-            break
-            
-        c.send(str(results).encode())
-        
+        try: 
+            if mycursor.rowcount == 0:
+                c.send(str("Persona dueña de ese número telefónico no existe").encode())            
+            else:
+                c.send(str(results).encode())
+        except IOError as e:
+            if e.errno == errno.EPIPE:
+                break
        
         
     print("Socket aun escuchando")

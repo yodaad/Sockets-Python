@@ -10,7 +10,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = 5100
 
 # Conexion con el servidor
-s.connect(('127.0.0.1', port))
+s.connect(('192.168.80.19', port))
 
 i = 0
 
