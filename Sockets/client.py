@@ -20,7 +20,7 @@ while i < 3:
     s.send(request.encode())
 
     # Recibir data del servidor y decodificarla
-    print(s.recv(1024).decode())
+    print(f"Informacion del {request} ",s.recv(1024).decode())
     
     i += 1
 
