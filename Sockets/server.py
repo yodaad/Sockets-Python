@@ -5,6 +5,8 @@ import mysql.connector
 import sys
 import errno
 
+# Valores de conexion 
+
 db = mysql.connector.connect(
     host = "127.0.0.1",
     user = "root",
