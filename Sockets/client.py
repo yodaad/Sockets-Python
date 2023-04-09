@@ -14,6 +14,8 @@ s.connect(('192.168.80.19', port))
 
 i = 0
 
+#Se establece la condición menor de 2 para que el usuario realice 2 consultas antes de cerrar el socket cliente
+
 while i < 3:
 
     request = input(f"Ingrese el numero telefonico {i + 1} a consultar: ")
