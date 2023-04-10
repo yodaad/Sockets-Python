@@ -5,6 +5,8 @@ import mysql.connector
 import sys
 import errno
 
+#Valores para conectarse a la BD
+
 db = mysql.connector.connect(
     host = "127.0.0.1",
     user = "root",
@@ -26,7 +28,7 @@ print("Socket conectado al puerto %s" %(port))
 
 # Uso de la primitiva listen
 s.listen(5)
-print("Socket escuchando")
+print("Socket server escuchando")
 
 
 while True:
@@ -57,7 +59,7 @@ while True:
                 break
        
         
-    print("Socket aun escuchando")
+    print("Socket server aun escuchando")
 
 
 
