@@ -22,17 +22,18 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Puerto de conexion
 port = 5100
 
-# Uso de la primitiva bind
+# Uso del metodo bind
 s.bind(('', port))
 print("Socket conectado al puerto %s" %(port))
 
-# Uso de la primitiva listen
+# Uso del metodo listen
 s.listen(5)
 print("Socket server escuchando")
 
 
 while True:
     
+    # Uso del metodo accept
     c, addr = s.accept()
     print("Se ha creado una conexion desde la direccion: ", addr)
         
