@@ -33,7 +33,6 @@ print("Socket server escuchando")
 
 while True:
     
-    # Uso del metodo accept
     c, addr = s.accept()
     print("Se ha creado una conexion desde la direccion: ", addr)
         
